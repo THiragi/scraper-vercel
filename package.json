@@ -1,0 +1,19 @@
+{
+  "name": "vercel-functions",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@vercel/node": "^1.9.1"
+  },
+  "dependencies": {
+    "@types/node": "^14.14.41",
+    "typescript": "^3.9.3"
+  }
+}
