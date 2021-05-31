@@ -9,13 +9,9 @@ export default async (req: VercelRequest, res: VercelResponse) => {
   try {
     const url = Array.isArray(query.url) ? query.url[0] : query.url;
     const result = await fetch(url)
-      .then((data) => {
-        if (!data.ok) return res.status(404).end();
-
-        return data.json();
-      })
-      .then((json) => {
-        const dom = new JSDOM(json.data);
+      .then((data) => data.text())
+      .then((text) => {
+        const dom = new JSDOM(text);
         const meta = dom.window.document.querySelectorAll(`head > meta`);
 
         return Array.from(meta)
@@ -26,12 +22,14 @@ export default async (req: VercelRequest, res: VercelResponse) => {
               .trim()
               .replace('og:', '');
             const content = ogp.getAttribute('content');
-            pre[property] = content;
-            return pre;
+            const obj = { [property]: content };
+
+            return { ...pre, ...obj };
           }, {});
       });
     return res.status(200).json(result);
   } catch (e) {
     console.log(e);
+    return res.status(500).end();
   }
 };
