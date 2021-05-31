@@ -1,3 +1,3 @@
 # scraper-vercel
 
-api for scraping og.
+scraping og with vercel serverless functions.
