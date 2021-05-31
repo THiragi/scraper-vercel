@@ -1,0 +1,12 @@
+{
+  "routes": [
+    {
+      "src": "/api",
+      "methods": ["GET"],
+      "dest": "/api",
+      "headers": {
+        "Access-Control-Allow-Origin": "*"
+      }
+    }
+  ]
+}
